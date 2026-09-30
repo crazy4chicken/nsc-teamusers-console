@@ -5,7 +5,7 @@
 组织成界面——会话、权限判断、审计数据全部以后端为准。
 
 技术栈是 Vue 3（`<script setup>`、TypeScript 严格模式）+ Vite + naive-ui + vue-router 4，
-包管理器锁定为 pnpm 12.6.0（经 Corepack 解析，无需全局安装）。
+包管理器是 pnpm（12.x）。
 
 ## 功能特性
 
@@ -25,12 +25,11 @@
 
 ## 本地开发
 
-需要 Node.js 20+。pnpm 不经全局安装，由 Corepack 按 `package.json` 的
-`"packageManager": "pnpm@12.6.0"` 解析：
+需要 Node.js 20+ 和 pnpm 12+（`npm i -g pnpm` 安装一次即可）：
 
 ```sh
-corepack pnpm install
-corepack pnpm dev
+pnpm install
+pnpm dev
 ```
 
 开发服务器监听 <http://localhost:5173>，并把 `/iam` 代理到后端（默认
@@ -40,10 +39,10 @@ corepack pnpm dev
 没有后端时，用 mock 模式——所有 API 由内存中的 fixture 应答：
 
 ```sh
-VITE_MOCK=1 corepack pnpm dev
+VITE_MOCK=1 pnpm dev
 ```
 
-PowerShell：`$env:VITE_MOCK='1'; corepack pnpm dev`。四个演示账号覆盖主要登录分支：
+PowerShell：`$env:VITE_MOCK='1'; pnpm dev`。四个演示账号覆盖主要登录分支：
 
 | 用户名 | 密码 | 行为 |
 | --- | --- | --- |
@@ -118,8 +117,8 @@ mock 状态只存在内存里，整页刷新后回到初始 fixture，需要重�
 ## 构建与部署
 
 ```sh
-corepack pnpm build     # vue-tsc --noEmit && vite build
-corepack pnpm preview   # 本地预览生产产物
+pnpm build     # vue-tsc --noEmit && vite build
+pnpm preview   # 本地预览生产产物
 ```
 
 产物是 `dist/` 下的静态文件（`index.html` 加哈希化的 `assets/`），mock 模块不会出现在其中。
