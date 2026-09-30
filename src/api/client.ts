@@ -37,7 +37,7 @@ export type VerbOptions = Omit<RequestOptions, 'path' | 'method' | 'body'>
 const DEFAULT_BASE_URL = '/iam'
 const DEFAULT_TIMEOUT_MS = 30_000
 
-let baseUrl = stripTrailingSlashes(import.meta.env.VITE_API_BASE ?? DEFAULT_BASE_URL)
+let baseUrl = stripTrailingSlashes(import.meta.env.TUCONSOLE_API_BASE ?? DEFAULT_BASE_URL)
 let tokenProvider: (() => string | null) | null = null
 let refreshHandler: (() => Promise<boolean>) | null = null
 let refreshInFlight: Promise<boolean> | null = null
@@ -45,7 +45,7 @@ let refreshInFlight: Promise<boolean> | null = null
 /**
  * Development seam: an in-memory transport installed by `src/api/mock` so the
  * console can be driven without the IAM service running. The default is the real
- * `fetch`, so production and every build without `VITE_MOCK=1` behave exactly as
+ * `fetch`, so production and every build without `TUCONSOLE_MOCK=1` behave exactly as
  * before; the mock module is only ever reached through a dev-guarded dynamic
  * import, so it is never part of a production bundle. The seam replaces exactly
  * the network call and nothing else: URL building, bearer injection, idempotency
@@ -66,7 +66,7 @@ function stripTrailingSlashes(value: string): string {
   return value.trim().replace(/\/+$/, '')
 }
 
-/** Overrides the API prefix. Exists for tests/embedded deployments; defaults to `VITE_API_BASE`. */
+/** Overrides the API prefix. Exists for tests/embedded deployments; defaults to `TUCONSOLE_API_BASE`. */
 export function setApiBaseUrl(value: string): void {
   baseUrl = stripTrailingSlashes(value)
 }

@@ -5,7 +5,7 @@ import { router } from './router'
 import { authStore } from './stores/authStore'
 
 /**
- * Starts the app. With `VITE_MOCK=1` in a dev build the in-memory mock backend
+ * Starts the app. With `TUCONSOLE_MOCK=1` in a dev build the in-memory mock backend
  * is installed before anything issues a request.
  *
  * The import is dynamic on purpose and MUST stay that way: a static import
@@ -15,7 +15,7 @@ import { authStore } from './stores/authStore'
  * drop the branch and the chunk is never emitted.
  */
 async function start(): Promise<void> {
-  if (import.meta.env.DEV && import.meta.env.VITE_MOCK === '1') {
+  if (import.meta.env.DEV && import.meta.env.TUCONSOLE_MOCK === '1') {
     const { installMockBackend } = await import('./api/mock')
     installMockBackend()
   }

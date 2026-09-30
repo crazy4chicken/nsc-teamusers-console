@@ -4,11 +4,17 @@ import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+  root: 'src',
+  envDir: '..',
   plugins: [vue()],
+  envPrefix: 'TUCONSOLE_',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  build: {
+    outDir: '../dist'
   },
   server: {
     port: 5173,

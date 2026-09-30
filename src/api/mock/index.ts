@@ -6,7 +6,7 @@ import { createMockState, restoreMockState, snapshotMockState } from './state'
 /**
  * Development-only mock backend.
  *
- * Installed from `src/main.ts` behind `import.meta.env.DEV && VITE_MOCK === '1'`
+ * Installed from `src/main.ts` behind `import.meta.env.DEV && TUCONSOLE_MOCK === '1'`
  * through a dynamic `import()`, so this whole directory is code-split away and
  * never reachable in a production build. It replaces exactly the network call
  * of `src/api/client.ts` (`setTransport`): URL building, bearer injection,
